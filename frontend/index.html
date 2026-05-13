@@ -1,0 +1,2072 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width,
+                 initial-scale=1.0">
+
+  <title>
+    Smart Hospital OPD
+  </title>
+
+  <link rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+
+
+
+
+  <!-- BACKGROUND -->
+  <div class="bg"></div>
+
+  <!-- HEADER -->
+  <header class="header">
+
+    <div class="logo">
+      🏥 Smart Hospital
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+
+  <a onclick="show('home')">
+    Home
+  </a>
+
+  <a onclick="show('about')">
+    About
+  </a>
+
+  
+
+  
+  <a onclick="show('tokenScreen')">
+    Live Token
+  </a>
+  
+  
+  
+  <a onclick="show('tracking')">
+    Tracking
+  </a>
+  
+  <!-- <a onclick="show('digitalTwin')">Map</a> -->
+  
+  <a onclick="show('aiScan')">
+    AI Face Scan
+  </a>
+  <!-- <a onclick="show('aboutTV')">
+  📺 All About This Project
+  </a> -->
+
+  <button onclick="show('smartBookingPage')">
+  🏥 Smart Booking
+</button>
+  <button onclick="show('hospitalAnalyticsPage')">
+  📊 Live Analytics
+</button>
+</nav>
+  </header>
+
+  <!-- CLOCK -->
+  <div class="clock"
+       id="clock">
+  </div>
+
+  <!-- HOME -->
+<!-- <button onclick="startTV()">
+  ▶ Start AI TV Presentation
+</button>
+   -->
+
+  <section id="home"
+           class="page">
+
+    <div class="hero">
+
+      <h1>
+        Smart Hospital OPD
+      </h1>
+
+      <p>
+        AI Queue • Live Appointment • Emergency Priority
+      </p>
+
+      <button onclick="show('appointments')">
+
+        Book Appointment
+
+      </button>
+      <div id="qrBox" style="margin-top:20px; text-align:center;"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT TV PRESENTATION -->
+<section id="aboutTV" class="page">
+
+  <div class="box">
+
+    <span class="close" onclick="closePage()">✖</span>
+
+    <h1>📺 Smart Hospital Project Presentation</h1>
+
+    <div id="tvScreen" class="tv-screen">
+
+      <h2 id="slideTitle">Loading...</h2>
+
+      <p id="slideText">Please wait...</p>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- EMERGENCY ALERT PANEL -->
+
+<section id="emergencyPanel"
+         class="page">
+
+  <div class="box emergency-panel">
+
+    <span class="close"
+          onclick="closePage()">
+      ✖
+    </span>
+
+    <h1>
+      🚨 Emergency Control Center
+    </h1>
+
+    <p class="emergency-sub">
+
+      AI detected emergency patients from OPD booking system
+
+    </p>
+
+    <br>
+
+    <!-- LIVE ALERT -->
+
+    <div class="live-alert">
+
+      🔴 LIVE EMERGENCY ACTIVE
+
+    </div>
+
+    <br>
+
+    <!-- AMBULANCE -->
+
+    <div class="emergency-grid">
+
+      <div class="emergency-card">
+
+        <h2>🚑 Ambulance</h2>
+
+        <p>Status : Moving</p>
+
+        <p>ETA : 3 Minutes</p>
+
+      </div>
+
+      <div class="emergency-card">
+
+        <h2>❤️ ICU Team</h2>
+
+        <p>Doctor Ready</p>
+
+        <p>Room : ICU-02</p>
+
+      </div>
+
+      <div class="emergency-card">
+
+        <h2>🩸 Blood Unit</h2>
+
+        <p>Blood Available</p>
+
+        <p>O+ Ready</p>
+
+      </div>
+
+      <div class="emergency-card">
+
+        <h2>📡 AI Tracking</h2>
+
+        <p>Live Patient Tracking</p>
+
+        <p>Active</p>
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <!-- EMERGENCY PATIENT -->
+
+    <div id="emergencyPatientBox">
+
+      <h2>
+        🚨 No Emergency Patient Right Now
+      </h2>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- AI FACE MOOD DETECTOR -->
+<!-- <section id="faceAI" class="page"> -->
+<!-- 
+  <div class="box">
+
+    <span class="close"
+          onclick="closePage()">
+      ✖
+    </span>
+
+    <h1>
+      🧠 AI Face Mood Detector
+    </h1>
+
+    <p class="ai-text">
+      AI patient face emotion analysis system
+    </p>
+
+    <br>
+
+    <div class="camera-box">
+
+     <video id="skinVideo"
+       autoplay
+       muted
+       playsinline>
+</video>
+
+<img
+id="scanImage"
+
+src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=800"
+
+style="display:none;">
+      <canvas id="canvas"></canvas>
+
+    </div>
+
+    <br>
+
+    <button onclick="startCamera()">
+      🎥 Start Camera
+    </button>
+
+    <button onclick="detectMood()">
+      🤖 Detect Mood
+    </button>
+
+    <br><br>
+
+    <div id="moodResult"
+         class="mood-result">
+
+      Waiting For Detection...
+
+    </div>
+
+  </div>
+
+</section>
+ -->
+
+  <!-- ABOUT -->
+  <!-- ABOUT HOSPITAL -->
+<section id="about" class="page">
+
+  <div class="box">
+
+    <span class="close"
+          onclick="closePage()">
+      ✖
+    </span>
+
+    <h1 class="about-title">
+      🏥  Government Medical College & Hospital (GMCH), Chhatrapati Sambhajinagar
+    </h1>
+
+    <p class="about-subtitle">
+      AI Powered Multi-Speciality Emergency Hospital
+    </p>
+
+    <!-- LIVE STATUS -->
+    <div class="live-status">
+
+      <div class="status-box">
+        🟢 Emergency : ACTIVE
+      </div>
+
+      <div class="status-box">
+        🚑 Ambulance : LIVE
+      </div>
+
+      <div class="status-box">
+        ❤️ ICU Monitoring : ON
+      </div>
+
+    </div>
+
+    <!-- HOSPITAL IMAGE -->
+    <div class="hospital-image">
+       
+      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1200" alt="" srcset="">
+      <!-- <img src="> -->
+
+    </div>
+
+    <!-- STATS -->
+    <div class="hospital-stats">
+
+      <div class="stat-card">
+        <h2>1500+</h2>
+        <p>Beds</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>500+</h2>
+        <p>Doctors</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>120+</h2>
+        <p>ICU Rooms</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>45+</h2>
+        <p>Operation Theatres</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>24/7</h2>
+        <p>Emergency</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>5L+</h2>
+        <p>Patients Treated</p>
+      </div>
+
+    </div>
+
+    <!-- FACILITIES -->
+    <h2 class="section-heading">
+      🧠 Smart Hospital Features
+    </h2>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        🤖 AI Face Scanner
+      </div>
+
+      <div class="feature-card">
+        📺 Live Token System
+      </div>
+
+      <div class="feature-card">
+        🚑 Smart Ambulance Tracking
+      </div>
+
+      <div class="feature-card">
+        🛰 Satellite Emergency Support
+      </div>
+
+      <div class="feature-card">
+        📲 QR Appointment
+      </div>
+
+      <div class="feature-card">
+        👨‍⚕ AI Doctor Recommendation
+      </div>
+
+      <div class="feature-card">
+        🧠 Mood Detection AI
+      </div>
+
+      <div class="feature-card">
+        ❤️ ICU Monitoring
+      </div>
+
+    </div>
+
+    <!-- MACHINES -->
+    <div class="machine-grid">
+
+  <!-- MRI -->
+  <div class="machine-card">
+    <img src="https://5.imimg.com/data5/SELLER/Default/2021/5/QH/FL/MB/98946358/mri-scan-machine-500x500.jpg" alt="">
+
+    <!-- <img
+
+  
+
+src="https://5.imimg.com/data5/SELLER/Default/2021/5/QH/FL/MB/98946358/mri-scan-machine-500x500.jpg"> -->
+    <h3>🧲 MRI Scan Machine</h3>
+
+    <p>
+      High-resolution brain & body scanning
+    </p>
+
+  </div>
+
+  <!-- CT -->
+  <div class="machine-card">
+  <img src="https://cdn.apollohospitals.com/ah-proton-stage/2024/08/ct_scan.jpg" alt="">
+
+    <!-- <img
+
+src="https://cdn.apollohospitals.com/ah-proton-stage/2024/08/ct_scan.jpg"> -->
+    <h3>☢ CT Scan Machine</h3>
+
+    <p>
+      Fast emergency internal scanning
+    </p>
+
+  </div>
+
+  <!-- ECG -->
+  <div class="machine-card">
+       <img src="https://www.precisionmicrodrives.com/wp-content/uploads/2022/05/ECG-monitor.png" alt="">
+    <!-- <img
+
+src="https://www.precisionmicrodrives.com/wp-content/uploads/2022/05/ECG-monitor.png"> -->
+    <h3>❤️ ECG Monitor</h3>
+
+    <p>
+      Live heart monitoring system
+    </p>
+
+  </div>
+
+  <!-- VENTILATOR -->
+  <div class="machine-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Servo_I_Ventilator.jpg" alt="">
+
+
+
+<!-- 
+    <img
+
+src="https://upload.wikimedia.org/wikipedia/commons/3/31/Servo_I_Ventilator.jpg"> -->
+    <h3>🫁 Ventilator System</h3>
+
+    <p>
+      ICU breathing support technology
+    </p>
+
+  </div>
+
+  <!-- BLOOD LAB -->
+  <div class="machine-card">
+    <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200" alt="">
+
+    <!-- <img
+      src="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200"> -->
+
+    <h3>🩸 Blood Analysis Lab</h3>
+
+    <p>
+      Smart AI pathology testing
+    </p>
+
+  </div>
+
+  <!-- AI -->
+  <div class="machine-card">
+
+    <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1200" alt="">
+
+    <!-- <img
+      src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=1200"> -->
+
+    <h3>🤖 AI Health Scanner</h3>
+
+    <p>
+      AI-powered skin & face detection
+    </p>
+
+  </div>
+
+</div>
+<!--  -->
+
+    <!-- LOCATION -->
+    <div class="location-box">
+
+      <h2>
+        📍 Hospital Location
+      </h2>
+
+      <p>
+            Government Medical College & Hospital (GMCH), Near Panchakki Road, Chhatrapati Sambhajinagar, Maharashtra - 431001
+
+      </p>
+
+      <p>
+        🚑 24/7 Emergency Support Available
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- APPOINTMENTS -->
+  <section id="appointments"
+           class="page">
+
+    <div class="box">
+
+      <span class="close"
+            onclick="closePage()">
+        ✖
+      </span>
+
+      <h1>
+        📅 Smart Appointment Booking
+      </h1>
+
+      <div class="counter-box">
+
+        <div class="counter-card">
+
+          <h2 id="totalCount">
+            0
+          </h2>
+
+          <p>
+            Total Appointments
+          </p>
+
+        </div>
+
+        <div class="counter-card emergency">
+
+          <h2 id="emergencyCount">
+            0
+          </h2>
+
+          <p>
+            Emergency Patients
+          </p>
+
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <!-- FORM -->
+<div class="form">
+
+  <input type="text"
+         id="patientName"
+         placeholder="Patient Name">
+
+  <input type="text"
+         id="bloodGroup"
+         placeholder="Blood Group">
+
+  <!-- GENDER -->
+  <label for="gender">Gender</label>
+  <select id="gender">
+    <option>Male</option>
+    <option>Female</option>
+  </select>
+
+  <!-- DEPARTMENT -->
+  <label for="department">Department</label>
+  <select id="department">
+    <option>Cardiology</option>
+    <option>Neurology</option>
+    <option>Orthopedic</option>
+    <option>ENT</option>
+    <option>General</option>
+  </select>
+
+  <!-- PRIORITY -->
+  <label for="priority">Priority</label>
+  <select id="priority">
+    <option>Normal</option>
+    <option>Emergency</option>
+  </select>
+
+  <!-- DISEASE -->
+  <label for="disease">Disease</label>
+  <select id="disease">
+    <option>Fever</option>
+    <option>Heart Attack</option>
+    <option>Chest Pain</option>
+    <option>Cold & Cough</option>
+    <option>Headache</option>
+    <option>Accident Injury</option>
+    <option>Breathing Problem</option>
+    <option>Bone Fracture</option>
+  </select>
+
+  <!-- DOCTOR -->
+  <label for="doctor">Doctor</label>
+  <select id="doctor">
+    <option>Dr. Sharma</option>
+    <option>Dr. Patil</option>
+    <option>Dr. Khan</option>
+    <option>Dr. Joshi</option>
+    <option>Dr. Mehta</option>
+  </select>
+
+</div>
+<!-- FORM END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+
+      <button onclick="bookAppointment()">
+        Book Appointment
+      </button>
+
+      <button onclick="show('allAppointments')">
+        Show All Appointments
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- AI DOCTOR SUGGESTION -->
+<div style="margin-top:20px; text-align:center;">
+
+    <div class="ai-box">
+
+  <h2>🤖 AI Doctor Finder</h2>
+
+  <!-- DROPDOWN INPUT -->
+ <label for="problem">Select Problem</label>
+
+<select id="problem">
+  <option value="">Select Problem</option>
+  <option value="heart">Heart Pain</option>
+  <option value="bone">Bone Fracture</option>
+  <option value="eye">Eye Problem</option>
+  <option value="skin">Skin Allergy</option>
+  <option value="child">Child Fever</option>
+  <option value="fever">Fever</option>
+  <option value="breathing">Breathing Problem</option>
+  <option value="tooth">Tooth Pain</option>
+</select>
+
+  <button onclick="suggestDoctor()">
+    Find Doctor
+  </button>
+
+  <div id="aiResult"></div>
+
+  <div id="doctorMatch"></div>
+
+</div>
+<!-- 
+  <h3>🧠 AI Doctor Suggestion</h3> -->
+
+  <!-- <input type="text"
+         id="problem"
+         placeholder="Enter your problem (heart, bone, eye...)"
+         style="padding:12px; width:60%; border-radius:10px;">
+
+  <br><br>
+
+  <button onclick="suggestDoctor()">
+    Suggest Doctor
+  </button>
+
+  <h2 id="aiResult" style="margin-top:15px; color:cyan;"></h2> -->
+
+</div>
+
+  <!-- ALL APPOINTMENTS -->
+  <section id="allAppointments"
+           class="page">
+
+    <div class="box">
+
+      <span class="close"
+            onclick="closePage()">
+        ✖
+      </span>
+
+      <h1>
+        📋 All Appointments
+      </h1>
+
+      <div id="list"></div>
+
+    </div>
+
+  </section>
+
+  <!-- DOCTOR -->
+
+  <!-- <section id="doctor"
+         class="page"> -->
+
+  <div class="box">
+
+    <span class="close"
+          onclick="closePage()">
+      ✖
+    </span>
+
+    <h1>
+      👨‍⚕ Top 20 Specialist Doctors
+    </h1>
+
+    <p class="doctor-subtitle">
+      Government Medical College & Hospital (GMCH),
+      Chhatrapati Sambhajinagar
+    </p>
+
+    <br>
+
+    <div class="doctor-container">
+
+      <!-- 1 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=800"
+          alt="Dr Rajesh Patil Cardiologist"
+          title="Dr Rajesh Patil Cardiologist">
+
+        <h2>
+          Dr. Rajesh Patil
+        </h2>
+
+        <p>❤️ Senior Cardiologist</p>
+        <p>⏳ Experience : 20+ Years</p>
+        <p>💉 Heart Surgery Specialist</p>
+
+      </div>
+
+      <!-- 2 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800"
+          alt="Dr Priya Sharma Neurologist"
+          title="Dr Priya Sharma Neurologist">
+
+        <h2>
+          Dr. Priya Sharma
+        </h2>
+
+        <p>🧠 Neurologist</p>
+        <p>⏳ Experience : 15+ Years</p>
+        <p>⚡ Brain Specialist</p>
+
+      </div>
+
+      <!-- 3 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=800"
+          alt="Dr Amit Deshmukh Orthopedic"
+          title="Dr Amit Deshmukh Orthopedic">
+
+        <h2>
+          Dr. Amit Deshmukh
+        </h2>
+
+        <p>🦴 Orthopedic Surgeon</p>
+        <p>⏳ Experience : 18+ Years</p>
+        <p>🦿 Bone Specialist</p>
+
+      </div>
+
+      <!-- 4 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=800"
+          alt="Dr Sneha Kulkarni Pediatrician"
+          title="Dr Sneha Kulkarni Pediatrician">
+
+        <h2>
+          Dr. Sneha Kulkarni
+        </h2>
+
+        <p>👶 Pediatrician</p>
+        <p>⏳ Experience : 12+ Years</p>
+        <p>🍼 Child Specialist</p>
+
+      </div>
+
+      <!-- 5 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1651008376811-b90baee60c1f?q=80&w=800"
+          alt="Dr Vikram Joshi Pulmonologist"
+          title="Dr Vikram Joshi Pulmonologist">
+
+        <h2>
+          Dr. Vikram Joshi
+        </h2>
+
+        <p>🫁 Pulmonologist</p>
+        <p>⏳ Experience : 14+ Years</p>
+        <p>🌬 Lung Specialist</p>
+
+      </div>
+
+      <!-- 6 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?q=80&w=800"
+          alt="Dr Neha Pawar Gynecologist"
+          title="Dr Neha Pawar Gynecologist">
+
+        <h2>
+          Dr. Neha Pawar
+        </h2>
+
+        <p>👩 Gynecologist</p>
+        <p>⏳ Experience : 16+ Years</p>
+        <p>🤱 Women Health Specialist</p>
+
+      </div>
+
+      <!-- 7 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=800"
+          alt="Dr Rohit Shinde Hematologist"
+          title="Dr Rohit Shinde Hematologist">
+
+        <h2>
+          Dr. Rohit Shinde
+        </h2>
+
+        <p>🩸 Hematologist</p>
+        <p>⏳ Experience : 11+ Years</p>
+        <p>🧬 Blood Specialist</p>
+
+      </div>
+
+      <!-- 8 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=800"
+          alt="Dr Pooja Verma Eye Specialist"
+          title="Dr Pooja Verma Eye Specialist">
+
+        <h2>
+          Dr. Pooja Verma
+        </h2>
+
+        <p>👁 Eye Specialist</p>
+        <p>⏳ Experience : 13+ Years</p>
+        <p>👓 Retina Specialist</p>
+
+      </div>
+
+      <!-- 9 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=800"
+          alt="Dr Arjun Kale Dental Surgeon"
+          title="Dr Arjun Kale Dental Surgeon">
+
+        <h2>
+          Dr. Arjun Kale
+        </h2>
+
+        <p>🦷 Dental Surgeon</p>
+        <p>⏳ Experience : 10+ Years</p>
+        <p>😁 Dental Implant Expert</p>
+
+      </div>
+
+      <!-- 10 -->
+      <div class="doctor-card">
+
+        <img
+          src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800"
+          alt="Dr Anjali Patne Dermatologist"
+          title="Dr Anjali Patne Dermatologist">
+
+        <h2>
+          Dr. Anjali Patne
+        </h2>
+
+        <p>🧴 Dermatologist</p>
+        <p>⏳ Experience : 14+ Years</p>
+        <p>✨ Skin Specialist</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- MAP -->
+  <!-- <section id="map"
+           class="page">
+
+    <div class="box">
+
+      <span class="close"
+            onclick="closePage()">
+        ✖
+      </span>
+
+      <h1>
+        📍 Hospital Location
+      </h1>
+
+     <iframe
+  src="https://www.google.com/maps?q=Government+Medical+College+and+Hospital,+Aurangabad+(Chhatrapati+Sambhajinagar)&hl=en&z=16&output=embed"
+  width="100%"
+  height="350"
+  style="border:none;
+         border-radius:15px;
+         box-shadow:0 0 20px rgba(0,255,255,0.3);">
+</iframe>
+<h2 style="color:cyan; text-align:center; margin-bottom:15px;">
+📍 Government Medical College & Hospital (GMCH), Sambhajinagar
+</h2>
+
+    </div>
+
+  </section> -->
+
+
+<!-- LIVE SMART HOSPITAL SCREEN -->
+
+<section id="tokenScreen"
+         class="page">
+         <div id="livePatientBox"></div>
+
+  <div class="smart-live-screen">
+
+    <span class="close"
+          onclick="closePage()">
+      ✖
+    </span>
+
+    <h1 class="live-title">
+      🏥 LIVE SMART PATIENT MONITOR
+    </h1>
+
+    <!-- CURRENT PATIENT -->
+
+    <div class="current-patient">
+
+      <div class="patient-left">
+
+        <h2>
+          🔴 CURRENT PATIENT
+        </h2>
+
+        <h1 id="livePatientName">
+          Waiting...
+        </h1>
+
+        <div class="live-token-box">
+
+          🎟 TOKEN :
+          <span id="livePatientToken">
+            ---
+          </span>
+
+        </div>
+
+        <div class="live-problem">
+
+          🦠 Disease :
+          <span id="liveDisease">
+            ---
+          </span>
+
+        </div>
+
+        <div class="live-room">
+
+          🚪 Room :
+          <span id="liveRoom">
+            ---
+          </span>
+
+        </div>
+
+        <div class="live-doctor">
+
+          👨‍⚕ Doctor :
+          <span id="liveDoctor">
+            ---
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="patient-right">
+
+        <div class="operation-box">
+
+          ⏳ Operation Time
+
+          <h1 id="operationTime">
+            25 Min
+          </h1>
+
+        </div>
+
+        <div class="status-box-live">
+
+          ❤️ Treatment Status
+
+          <h2 id="treatmentStatus">
+            Treatment Running
+          </h2>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- NEXT PATIENT -->
+
+    <div class="next-patient">
+
+      <h2>
+        ⏭ NEXT PATIENT
+      </h2>
+
+      <h1 id="nextPatientName">
+        Waiting...
+      </h1>
+
+      <p id="nextDisease">
+        ---
+      </p>
+
+    </div>
+
+    <!-- BUTTON -->
+
+    <button onclick="hospitalAnnouncement()"
+            class="announce-btn">
+
+      🔊 AI Hospital Announcement
+
+    </button>
+
+  </div>
+
+</section>
+  
+
+  <!-- FAMILY LIVE TRACKING -->
+<section id="tracking"
+         class="page">
+
+  <div class="box">
+
+    <span class="close"
+          onclick="closePage()">
+      ✖
+    </span>
+
+    <h1>
+      📡 Family Live Tracking
+    </h1>
+
+    <p class="tracking-text">
+      Track patient live hospital location
+    </p>
+
+    <br>
+<input type="text"
+       id="trackName"
+       placeholder="Enter Patient Name">
+
+    <br><br>
+
+    <button onclick="trackPatient()">
+      🔍 Track Patient
+    </button>
+
+    <br><br>
+
+    <div id="trackingResult"
+         class="tracking-result">
+
+      Waiting For Token...
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- ADMIN -->
+  <!-- <section id="admin"
+           class="page">
+
+    <div class="box">
+
+      <span class="close"
+            onclick="closePage()">
+        ✖
+      </span>
+
+      <h1>
+        👑 Admin Dashboard
+      </h1>
+
+      <div class="counter-box">
+
+        <div class="counter-card">
+
+          <h2 id="adminPatients">
+            0
+          </h2>
+
+          <p>
+            Total Patients
+          </p>
+
+        </div>
+
+        <div class="counter-card emergency">
+
+          <h2 id="adminEmergency">
+            0
+          </h2>
+
+          <p>
+            Emergency Cases
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section> -->
+
+<!-- =========================
+     FUTURE AI FOOTER
+========================= -->
+
+<footer class="future-footer">
+
+  <!-- GLOW -->
+  <div class="footer-glow"></div>
+
+  <!-- EARTH -->
+  <div class="earth-box">
+
+    <div class="earth">
+
+      <div class="earth-shadow"></div>
+
+    </div>
+
+  </div>
+
+  <!-- SATELLITE -->
+  <div class="satellite-orbit">
+
+    <div class="satellite">
+      🛰
+    </div>
+
+  </div>
+
+  <!-- CONTENT -->
+  <div class="footer-content">
+
+    <h1>
+      🌍 Smart Hospital AI Network
+    </h1>
+
+    <p>
+      Connected Emergency • Satellite Tracking • AI Healthcare
+    </p>
+
+    <div class="footer-status">
+
+      <div class="status-card">
+        🟢 AI STATUS : ONLINE
+      </div>
+
+      <div class="status-card">
+        🚑 Ambulance GPS : ACTIVE
+      </div>
+
+      <div class="status-card">
+        🛰 Satellite Monitoring : LIVE
+      </div>
+
+      <div class="status-card">
+        ❤️ Emergency Network : CONNECTED
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+   AI PROJECT SHOWCASE PANEL
+========================= -->
+
+<div class="ai-showcase">
+
+  <h2>🚀 Why This Hospital System is UNIQUE</h2>
+
+  <div class="show-grid">
+
+    <div class="show-card">🤖 AI Doctor Suggestion (Auto Disease → Doctor Match)</div>
+    <div class="show-card">📡 Live Patient Tracking Inside Hospital</div>
+    <div class="show-card">🚨 Emergency Auto Priority System</div>
+    <div class="show-card">🛰 Digital Twin Hospital Map (Live Zones)</div>
+    <div class="show-card">📺 Real-Time Token Display System</div>
+    <div class="show-card">🧠 AI Skin Scanner (Disease Detection)</div>
+    <div class="show-card">📷 Face Mood Detection System</div>
+    <div class="show-card">💊 Smart Appointment + QR System</div>
+    <div class="show-card">🚑 Ambulance + ICU Sync System</div>
+    <div class="show-card">🌐 Satellite Emergency Simulation</div>
+
+  </div>
+
+  <!-- HOSPITAL ACHIEVEMENTS -->
+  <h2>🏆 Hospital Achievements</h2>
+
+  <div class="award-slider">
+
+    <div class="award-card">
+      🥇 2024 – Best Smart Hospital Innovation Award
+    </div>
+
+    <div class="award-card">
+      🥇 2025 – AI Healthcare Excellence Award
+    </div>
+
+    <div class="award-card">
+      🏅 Govt Recognition – Digital Health Project
+    </div>
+
+    <div class="award-card">
+      🏅 Hackathon Finalist – National Level
+    </div>
+
+  </div>
+
+</div>
+
+    <!-- AI HEALTH TIPS -->
+
+<div class="health-tips-box">
+
+  <h2>
+    🤖 AI Health Assistant
+  </h2>
+
+  <div class="tips-container">
+
+    <span class="tips-label">
+      LIVE HEALTH TIP :
+    </span>
+
+    <span id="healthTip">
+      Drink More Water 💧
+    </span>
+
+  </div>
+
+</div>
+
+  </div>
+
+</footer>
+
+<!-- AI FACE SCAN -->
+<section id="aiScan"
+         class="page">
+
+  <div class="box">
+
+    <!-- CLOSE -->
+    <span class="close"
+          onclick="closePage()">
+      ✖
+    </span>
+
+    <h1>
+      🤖 AI Skin Scanner
+    </h1>
+
+    <p class="scan-text">
+
+      AI-based preliminary skin analysis
+      for smart healthcare assistance
+
+    </p>
+
+    <!-- CAMERA -->
+    <div class="camera-box">
+
+      <video id="scanVideo">
+
+      </video>
+
+      <div class="scanner-line"></div>
+
+    </div>
+
+    <br>
+
+    <!-- BUTTON -->
+    <button onclick="startScan()">
+
+      Start AI Scan
+
+    </button>
+
+    <!-- RESULT -->
+    <div id="scanResult"></div>
+
+  </div>
+
+</section>
+<!-- =========================
+     EMERGENCY OVERLAY
+========================= -->
+
+<div id="emergencyOverlay">
+
+  <div class="emergency-box">
+
+    <h1>
+      🚨 EMERGENCY DETECTED
+    </h1>
+
+    <p>
+      Critical Patient Priority Activated
+    </p>
+
+    <div class="ambulance-animation">
+      🚑
+    </div>
+
+    <h2>
+      Fast Track Token Generated
+    </h2>
+
+    <h1 id="emergencyToken">
+      E-101
+    </h1>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========================
+     HOSPITAL AWARDS SECTION
+========================= -->
+
+<div class="award-section">
+
+  <h1>🏆 Hospital Achievements & Ratings</h1>
+
+  <p>Years of Excellence in Healthcare Services</p>
+
+  <div class="award-grid">
+
+    <!-- 2022 -->
+    <div class="award-card">
+
+      <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=800"
+           alt="NABH Accreditation Certificate">
+
+      <h2>⭐ NABH Accreditation</h2>
+      <p>Year: 2022</p>
+      <p>Grade: A+ Healthcare Quality</p>
+
+    </div>
+
+    <!-- 2023 -->
+    <div class="award-card">
+
+      <img src="https://images.unsplash.com/photo-1580281658628-6c2f8a0c4f0a?q=80&w=800"
+           alt="Best Emergency Hospital Award">
+
+      <h2>🏥 Best Emergency Hospital</h2>
+      <p>Year: 2023</p>
+      <p>Grade: 5-Star Emergency Response</p>
+
+    </div>
+
+    <!-- 2024 -->
+    <div class="award-card">
+
+      <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800"
+           alt="AI Innovation Award Ceremony">
+
+      <h2>🤖 AI Innovation Award</h2>
+      <p>Year: 2024</p>
+      <p>Grade: National Level Tech Winner</p>
+
+    </div>
+
+    <!-- 2025 -->
+    <div class="award-card">
+
+      <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800"
+           alt="Smart Hospital Recognition Trophy">
+
+      <h2>🌍 Smart Hospital Recognition</h2>
+      <p>Year: 2025</p>
+      <p>Grade: Top Digital Hospital Project</p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+<!-- AI TV PRESENTATION PAGE -->
+<section id="aboutThisSite" class="page">
+
+  <div class="box">
+
+    <span class="close" onclick="closePage()">✖</span>
+
+    <h1>📺 Smart Hospital AI Presentation</h1>
+
+    <p style="text-align:center; opacity:0.7;">
+      Auto Voice + TV Style Demo (No Reading Needed)
+    </p>
+
+    <!-- TV SCREEN -->
+    <div class="tv-screen">
+
+      <div class="tv-glow">
+
+        📡 LOADING AI PRESENTATION...
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <!-- INFO CARDS -->
+    <div class="info-grid">
+
+      <div class="info-card">🤖 AI Doctor System</div>
+      <div class="info-card">🚨 Emergency Priority</div>
+      <div class="info-card">📅 Smart Appointment</div>
+      <div class="info-card">📍 Live Tracking</div>
+      <div class="info-card">🧠 AI Face Scanner</div>
+      <div class="info-card">📺 Live Token System</div>
+      <div class="info-card">🚑 Ambulance Tracking</div>
+      <div class="info-card">🛰 Digital Hospital Twin</div>
+      <div class="info-card">📊 Admin Dashboard</div>
+      <div class="info-card">💡 Smart Future System</div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer class="ai-footer">
+
+  <h1>🤖 AI SMART HOSPITAL – PROJECT SUMMARY</h1>
+
+  <div class="ai-section">
+
+    <h2>🧠 1. AI Doctor System</h2>
+    <p>Patient problem detect karke automatic specialist doctor suggest karta hai using AI logic.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>📡 2. Live Patient Tracking</h2>
+    <p>Hospital me patient kis department, room aur floor pe hai ye real-time show hota hai.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>🚑 3. Emergency System</h2>
+    <p>Emergency case detect hote hi ICU, ambulance aur blood unit auto active ho jate hai.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>📺 4. Token System</h2>
+    <p>Live OPD token system jo real-time update hota hai aur voice announcement support karta hai.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>🤖 5. AI Face & Skin Scanner</h2>
+    <p>Camera based AI system jo skin issue, mood aur health prediction karta hai.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>🛰 6. Digital Hospital Twin</h2>
+    <p>Hospital ka virtual map jisme OPD, ICU, Lab aur Emergency live status show hota hai.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>📊 7. Admin Dashboard</h2>
+    <p>Total patients, emergency cases aur hospital activity ka live analytics system.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>⚡ 8. Smart Automation</h2>
+    <p>System automatic actions leta hai jaise emergency alert, doctor suggestion aur queue management.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>🧬 9. Multi Department System</h2>
+    <p>Cardiology, Neurology, Orthopedic jaise departments smart AI routing ke saath connected hai.</p>
+
+  </div>
+
+  <div class="ai-section">
+
+    <h2>🌐 10. Real-Time Hospital Ecosystem</h2>
+    <p>Pura hospital ek live digital system ki tarah work karta hai jisme sab kuch connected hai.</p>
+
+  </div>
+
+</footer>
+
+
+
+
+
+<!-- =========================
+     AI COMMAND CENTER
+========================= -->
+
+<section class="command-center">
+
+  <div class="overlay-grid"></div>
+
+  <div class="main-title">
+
+    <h1>
+      SMART AI HOSPITAL
+    </h1>
+
+    <h2>
+      COMMAND CENTER
+    </h2>
+
+    <p>
+      Future AI Powered Healthcare System
+    </p>
+
+  </div>
+
+  <div class="center-grid">
+
+    <!-- LEFT ALERTS -->
+
+    <div class="left-panel glass-card floating-card">
+
+      <h2>
+        🚨 LIVE AI ALERTS
+      </h2>
+
+      <div class="alert-box red-alert">
+        Emergency Patient Detected
+      </div>
+
+      <div class="alert-box blue-alert">
+        ICU Room Prepared
+      </div>
+
+      <div class="alert-box green-alert">
+        Ambulance Ready
+      </div>
+
+      <div class="alert-box yellow-alert">
+        AI Monitoring Active
+      </div>
+
+    </div>
+
+    <!-- CENTER SCREEN -->
+
+    <div class="main-screen glass-card">
+
+      <div class="screen-top">
+
+        <h1>
+          LIVE HOSPITAL STATUS
+        </h1>
+
+      </div>
+
+      <div class="screen-stats">
+
+        <div class="stat-box">
+          <h2 id="livePatients">102</h2>
+          <p>Patients</p>
+        </div>
+
+        <div class="stat-box">
+          <h2 id="icuLoad">72%</h2>
+          <p>ICU Load</p>
+        </div>
+
+        <div class="stat-box">
+          <h2 id="doctorOnline">18</h2>
+          <p>Doctors</p>
+        </div>
+
+      </div>
+
+      <div class="ai-heartbeat">
+
+        <div class="heartbeat-line"></div>
+
+      </div>
+
+      <div class="hospital-meter">
+
+        <div class="meter-fill"></div>
+
+      </div>
+
+      <h3 class="meter-text">
+        AI Hospital Stress Meter : HIGH
+      </h3>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <div class="right-panel glass-card floating-card">
+
+      <h2>
+        👨‍⚕ LIVE OPERATION
+      </h2>
+
+      <div class="patient-live-card">
+
+        <h3>
+          👤 Amit Patil
+        </h3>
+
+        <p>
+          ❤️ Heart Surgery
+        </p>
+
+        <p>
+          🏥 OT - 02
+        </p>
+
+        <p>
+          👨‍⚕ Dr. Sharma
+        </p>
+
+        <div class="operation-bar">
+
+          <div class="operation-progress"></div>
+
+        </div>
+
+        <span>
+          Surgery Running...
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     AI INDIA HEALTH SYSTEM
+========================= -->
+
+<!-- <section class="india-health-system"> -->
+
+  <!-- <h1 class="system-title">
+    🇮🇳 AI INDIA HEALTHCARE SYSTEM
+  </h1> -->
+<!--  -->
+
+<!-- =========================
+     SMART BOOKING PAGE
+========================= -->
+
+
+<section
+class="page"
+id="smartBookingPage">
+
+  <div class="smart-booking-container">
+
+    <h1 class="smart-title">
+
+      🏥 AI Smart Hospital Booking
+
+    </h1>
+
+    <div class="smart-grid">
+
+      <!-- LEFT -->
+
+      <div class="smart-form-box">
+
+        <input
+        type="text"
+        id="smartPatientName"
+        placeholder="👤 Patient Name">
+
+        <input
+        type="number"
+        id="smartPatientAge"
+        placeholder="🎂 Age">
+
+        <select id="smartBloodGroup">
+
+          <option>
+            🩸 Blood Group
+          </option>
+
+          <option>
+            A+
+          </option>
+
+          <option>
+            B+
+          </option>
+
+          <option>
+            O+
+          </option>
+
+          <option>
+            AB+
+          </option>
+
+        </select>
+
+        <select id="smartDisease">
+
+          <option>
+            Select Disease
+          </option>
+
+          <option>
+            Fever
+          </option>
+
+          <option>
+            Heart Attack
+          </option>
+
+          <option>
+            Bone Fracture
+          </option>
+
+          <option>
+            Accident Injury
+          </option>
+
+          <option>
+            Breathing Problem
+          </option>
+
+        </select>
+
+        <select id="smartEmergencyLevel">
+
+          <option>
+            Normal
+          </option>
+
+          <option>
+            Emergency
+          </option>
+
+        </select>
+
+        <select id="smartDoctorSelect">
+
+          <option>
+            Dr. Rajesh Patil
+          </option>
+
+          <option>
+            Dr. Khan
+          </option>
+
+          <option>
+            Dr. Sharma
+          </option>
+
+        </select>
+
+        <button
+        class="smart-book-btn"
+        onclick="bookSmartAppointment()">
+
+          🚀 Book Smart Appointment
+
+        </button>
+
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="smart-ai-box">
+
+        <h2>
+
+          🤖 AI Hospital Assistant
+
+        </h2>
+
+        <div id="smartAiResult">
+
+          Waiting For Patient Data...
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     LIVE ANALYTICS PAGE
+========================= -->
+
+<section
+class="page"
+id="hospitalAnalyticsPage">
+
+  <div class="analytics-container">
+
+    <h1 class="analytics-title">
+
+      📊 Live Hospital Analytics
+
+    </h1>
+
+    <div class="analytics-grid">
+
+      <div class="analytics-card">
+
+        <h2 id="totalSmartAppointments">
+
+          0
+
+        </h2>
+
+        <p>
+
+          👥 Total Patients
+
+        </p>
+
+      </div>
+
+      <div class="analytics-card emergency-card">
+
+        <h2 id="totalEmergencyPatients">
+
+          0
+
+        </h2>
+
+        <p>
+
+          🚨 Emergency
+
+        </p>
+
+      </div>
+
+      <div class="analytics-card">
+
+        <h2 id="totalNormalPatients">
+
+          0
+
+        </h2>
+
+        <p>
+
+          🟢 Normal
+
+        </p>
+
+      </div>
+
+      <div class="analytics-card">
+
+        <h2 id="totalOperations">
+
+          0
+
+        </h2>
+
+        <p>
+
+          🏥 Operations
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
