@@ -48,11 +48,14 @@
   
 
   
-  <a onclick="show('tokenScreen')">
+  <!-- <a onclick="show('tokenScreen')">
     Live Token
-  </a>
+  </a> -->
   
   
+  <a onclick="show('futureCareZone')">
+    AI Care Live
+</a>
   
   <a onclick="show('tracking')">
     Tracking
@@ -70,6 +73,14 @@
   <button onclick="show('smartBookingPage')">
   🏥 Smart Booking
 </button>
+<button
+class="smart-view-btn"
+onclick="openSmartRecords()">
+
+📋 View Booked Appointments
+
+</button>
+
   <button onclick="show('hospitalAnalyticsPage')">
   📊 Live Analytics
 </button>
@@ -1025,7 +1036,7 @@ src="https://upload.wikimedia.org/wikipedia/commons/3/31/Servo_I_Ventilator.jpg"
 
 <!-- LIVE SMART HOSPITAL SCREEN -->
 
-<section id="tokenScreen"
+<!-- <section id="tokenScreen"
          class="page">
          <div id="livePatientBox"></div>
 
@@ -1040,7 +1051,7 @@ src="https://upload.wikimedia.org/wikipedia/commons/3/31/Servo_I_Ventilator.jpg"
       🏥 LIVE SMART PATIENT MONITOR
     </h1>
 
-    <!-- CURRENT PATIENT -->
+    CURRENT PATIENT
 
     <div class="current-patient">
 
@@ -1092,7 +1103,7 @@ src="https://upload.wikimedia.org/wikipedia/commons/3/31/Servo_I_Ventilator.jpg"
 
       </div>
 
-      <!-- RIGHT -->
+      RIGHT
 
       <div class="patient-right">
 
@@ -1120,7 +1131,7 @@ src="https://upload.wikimedia.org/wikipedia/commons/3/31/Servo_I_Ventilator.jpg"
 
     </div>
 
-    <!-- NEXT PATIENT -->
+    NEXT PATIENT
 
     <div class="next-patient">
 
@@ -1138,7 +1149,7 @@ src="https://upload.wikimedia.org/wikipedia/commons/3/31/Servo_I_Ventilator.jpg"
 
     </div>
 
-    <!-- BUTTON -->
+    BUTTON
 
     <button onclick="hospitalAnnouncement()"
             class="announce-btn">
@@ -1150,7 +1161,7 @@ src="https://upload.wikimedia.org/wikipedia/commons/3/31/Servo_I_Ventilator.jpg"
   </div>
 
 </section>
-  
+   -->
 
   <!-- FAMILY LIVE TRACKING -->
 <section id="tracking"
@@ -1968,6 +1979,27 @@ id="smartBookingPage">
           Waiting For Patient Data...
 
         </div>
+        <!-- =========================
+     SMART APPOINTMENT HISTORY
+========================= -->
+
+<!-- <div class="smart-history-box">
+
+  <h2 class="history-title">
+    📋 View All Smart Appointments
+  </h2>
+
+  <p class="history-sub">
+    Live Permanent Hospital Appointment Records
+  </p>
+
+  <div id="smartAppointmentList">
+
+    No Appointments Yet...
+
+  </div>
+
+</div> -->
 
       </div>
 
@@ -2062,6 +2094,284 @@ id="hospitalAnalyticsPage">
     </div>
 
   </div>
+
+</section>
+
+<!-- ===================================
+     FUTURE AI CARE LIVE SYSTEM
+=================================== -->
+
+<section
+class="page"
+id="futureCareZone">
+
+<div class="future-care-wrapper">
+
+  <span
+  class="close"
+  onclick="closePage()">
+  ✖
+  </span>
+
+  <h1 class="future-care-title">
+
+    🧠 AI LIVE CARE CENTER
+
+  </h1>
+
+  <p class="future-care-sub">
+
+    Real-Time Smart Hospital Monitoring
+
+  </p>
+
+  <!-- LIVE OPERATION BOX -->
+
+  <div class="future-operation-grid">
+
+    <!-- CARD 1 -->
+
+    <div class="future-operation-card">
+
+      <div class="future-live-dot"></div>
+
+      <h2>
+        👨 Patient :
+        Ramesh Patil
+      </h2>
+
+      <p>
+        ❤️ Heart Surgery
+      </p>
+
+      <p>
+        👨‍⚕ Dr. Sharma
+      </p>
+
+      <p>
+        🏥 Operation Theatre : OT-02
+      </p>
+
+      <div class="future-progress-bar">
+
+        <div class="future-progress-fill fill1"></div>
+
+      </div>
+
+      <span>
+        Surgery Progress : 82%
+      </span>
+
+    </div>
+
+    <!-- CARD 2 -->
+
+    <div class="future-operation-card">
+
+      <div class="future-live-dot"></div>
+
+      <h2>
+        👩 Patient :
+        Priya Deshmukh
+      </h2>
+
+      <p>
+        🦴 Bone Treatment
+      </p>
+
+      <p>
+        👨‍⚕ Dr. Khan
+      </p>
+
+      <p>
+        🏥 Emergency Room : ER-04
+      </p>
+
+      <div class="future-progress-bar">
+
+        <div class="future-progress-fill fill2"></div>
+
+      </div>
+
+      <span>
+        Treatment Progress : 65%
+      </span>
+
+    </div>
+
+    <!-- CARD 3 -->
+
+    <div class="future-operation-card">
+
+      <div class="future-live-dot"></div>
+
+      <h2>
+        👦 Patient :
+        Aarav Joshi
+      </h2>
+
+      <p>
+        🫁 Lung Infection
+      </p>
+
+      <p>
+        👨‍⚕ Dr. Patil
+      </p>
+
+      <p>
+        🏥 ICU Room : ICU-07
+      </p>
+
+      <div class="future-progress-bar">
+
+        <div class="future-progress-fill fill3"></div>
+
+      </div>
+
+      <span>
+        Recovery Progress : 91%
+      </span>
+
+    </div>
+
+  </div>
+
+  <!-- VIEW BUTTON -->
+
+  <div class="future-view-btn-box">
+
+    <button
+    onclick="show('futureAllPatientsPage')"
+    class="future-view-btn">
+
+      📋 View All Patients
+
+    </button>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- ===================================
+     ALL OPERATED PATIENTS PAGE
+=================================== -->
+
+<section
+class="page"
+id="futureAllPatientsPage">
+
+<div class="future-patient-page">
+
+  <span
+  class="close"
+  onclick="closePage()">
+  ✖
+  </span>
+
+  <h1>
+
+    🏥 Previous Operation Records
+
+  </h1>
+
+  <div class="future-history-grid">
+
+    <div class="future-history-card">
+
+      <h2>
+        👤 Suresh Patil
+      </h2>
+
+      <p>
+        ❤️ Heart Operation
+      </p>
+
+      <p>
+        ✅ Successful
+      </p>
+
+      <p>
+        📅 12 May 2026
+      </p>
+
+    </div>
+
+    <div class="future-history-card">
+
+      <h2>
+        👩 Neha Sharma
+      </h2>
+
+      <p>
+        🦴 Knee Surgery
+      </p>
+
+      <p>
+        ✅ Recovered
+      </p>
+
+      <p>
+        📅 10 May 2026
+      </p>
+
+    </div>
+
+    <div class="future-history-card">
+
+      <h2>
+        👦 Aditya Khan
+      </h2>
+
+      <p>
+        🫁 ICU Treatment
+      </p>
+
+      <p>
+        ✅ Stable
+      </p>
+
+      <p>
+        📅 09 May 2026
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     SMART RECORD PAGE
+========================= -->
+
+<section
+class="page"
+id="smartRecordPage">
+
+<div class="smart-record-container">
+
+  <span
+  class="close"
+  onclick="closePage()">
+  ✖
+  </span>
+
+  <h1 class="smart-record-title">
+
+    📋 All Hospital Appointments
+
+  </h1>
+
+  <div
+  id="smartRecordList">
+
+  </div>
+
+</div>
 
 </section>
 
