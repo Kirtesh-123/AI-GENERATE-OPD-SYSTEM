@@ -251,7 +251,32 @@ if(priority === "Emergency"){
 
   alert('Appointment Booked Successfully ✅');
 
+
+/* RANDOM TOKEN */
+
+const generatedToken =
+Math.floor(
+  100 + Math.random()*900
+);
+
+/* LIVE UPDATE */
+
+const patientData = {
+
+  name,
+  token:generatedToken,
+  disease,
+  doctor
+
+};
+
+updateLivePatient(patientData);
+
+announceToken(patientData);
+
   loadAppointments();
+
+  
 }
 /* =========================
    CREATE LIVE PATIENT
@@ -1234,33 +1259,165 @@ function startTV(){
    LIVE AI HOSPITAL DATA
 ========================= */
 
-setInterval(()=>{
+
+/* =========================
+   SMART LIVE TOKEN
+========================= */
+
+function updateLivePatient(patient){
+
+  let treatment = "";
+  let room = "";
+  let time = "";
+
+  const seriousDiseases = [
+
+    "heart attack",
+    "bone fracture",
+    "accident injury",
+    "breathing problem"
+
+  ];
+
+  // SERIOUS
+
+  if(
+
+    seriousDiseases.includes(
+
+      patient.disease.toLowerCase()
+
+    )
+
+  ){
+
+    treatment =
+    "🔴 Operation Running";
+
+    room =
+    "🏥 Operation Theatre - OT 02";
+
+    time =
+    "⏳ Surgery Time : 2 Hours";
+
+  }
+
+  // NORMAL
+
+  else{
+
+    treatment =
+    "🟢 Normal Treatment Running";
+
+    room =
+    "💊 OPD Consultation Room";
+
+    time =
+    "⏳ Treatment Time : 15 Minutes";
+
+  }
+
+  // LIVE TOKEN UI
 
   document.getElementById(
-    "livePatients"
+    "liveToken"
   ).innerHTML =
+  patient.token;
 
-  Math.floor(
-    80 + Math.random()*50
+  document.querySelector(
+    ".patient-name"
+  ).innerHTML =
+  "👤 " + patient.name;
+
+  document.querySelector(
+    ".department-box"
+  ).innerHTML =
+  "🦠 " + patient.disease;
+
+  document.querySelector(
+    ".doctor-ready"
+  ).innerHTML =
+  "👨‍⚕ " + patient.doctor;
+
+  document.getElementById(
+    "treatmentStatus"
+  ).innerHTML =
+  treatment;
+
+  document.getElementById(
+    "roomNumber"
+  ).innerHTML =
+  room;
+
+  document.getElementById(
+    "treatmentTime"
+  ).innerHTML =
+  time;
+
+}
+
+/* =========================
+   AI TOKEN ANNOUNCEMENT
+========================= */
+
+function announceToken(patient){
+
+  speechSynthesis.cancel();
+
+  const speech =
+  new SpeechSynthesisUtterance(
+
+    patient.name +
+
+    " ji. Aapka token number " +
+
+    patient.token +
+
+    " hai. " +
+
+    patient.doctor +
+
+    " doctor aapka treatment karenge."
+
   );
 
-  document.getElementById(
-    "icuLoad"
-  ).innerHTML =
+  speech.lang = "hi-IN";
 
-  Math.floor(
-    50 + Math.random()*40
-  ) + "%";
+  speech.rate = 0.9;
 
-  document.getElementById(
-    "doctorOnline"
-  ).innerHTML =
+  speech.pitch = 1;
 
-  Math.floor(
-    10 + Math.random()*15
-  );
+  speechSynthesis.speak(speech);
 
-},4000);
+}
+
+// setInterval(()=>{
+
+//   document.getElementById(
+//     "livePatients"
+//   ).innerHTML =
+
+//   Math.floor(
+//     80 + Math.random()*50
+//   );
+
+//   document.getElementById(
+//     "icuLoad"
+//   ).innerHTML =
+
+//   Math.floor(
+//     50 + Math.random()*40
+//   ) + "%";
+
+//   document.getElementById(
+//     "doctorOnline"
+//   ).innerHTML =
+
+//   Math.floor(
+//     10 + Math.random()*15
+//   );
+
+// },4000);
 
 
 /* =========================
@@ -1388,6 +1545,21 @@ function checkSeniorCitizen(age){
    SMART APPOINTMENT SYSTEM
 ========================= */
 
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   SMART BOOK APPOINTMENT
+========================= */
+
 function bookSmartAppointment(){
 
   const name =
@@ -1420,27 +1592,35 @@ function bookSmartAppointment(){
     "smartDoctorSelect"
   ).value;
 
+  /* VALIDATION */
+
   if(name === ""){
 
-    alert("Enter Patient Name");
+    alert(
+      "Enter Patient Name"
+    );
+
     return;
 
   }
 
-  // TOKEN
+  /* TOKEN */
 
   const token =
+
+  "SH-" +
+
   Math.floor(
     1000 + Math.random()*9000
   );
 
-  // AI RESULT
+  /* AI RESULT */
 
   document.getElementById(
     "smartAiResult"
   ).innerHTML = `
 
-    <h2>
+    <h2 style="color:cyan;">
       ✅ Appointment Confirmed
     </h2>
 
@@ -1467,7 +1647,59 @@ function bookSmartAppointment(){
 
   `;
 
-  // SAVE TOTAL
+  /* =========================
+     SAVE FULL APPOINTMENT
+  ========================= */
+
+  let allAppointments =
+
+  JSON.parse(
+
+    localStorage.getItem(
+      "smartHospitalAppointments"
+    )
+
+  ) || [];
+
+  const patientData = {
+
+    token : token,
+
+    name : name,
+
+    age : age,
+
+    blood : blood,
+
+    disease : disease,
+
+    type : emergency,
+
+    doctor : doctor,
+
+    time :
+    new Date()
+    .toLocaleString()
+
+  };
+
+  allAppointments.push(
+    patientData
+  );
+
+  localStorage.setItem(
+
+    "smartHospitalAppointments",
+
+    JSON.stringify(
+      allAppointments
+    )
+
+  );
+
+  /* =========================
+     TOTAL PATIENTS
+  ========================= */
 
   let total =
   localStorage.getItem(
@@ -1483,15 +1715,21 @@ function bookSmartAppointment(){
   total++;
 
   localStorage.setItem(
+
     "smartTotalPatients",
+
     total
+
   );
 
-  // NORMAL / EMERGENCY
+  /* =========================
+     EMERGENCY / NORMAL
+  ========================= */
 
   if(emergency === "Emergency"){
 
     let emergencyCount =
+
     localStorage.getItem(
       "smartEmergencyPatients"
     );
@@ -1505,8 +1743,11 @@ function bookSmartAppointment(){
     emergencyCount++;
 
     localStorage.setItem(
+
       "smartEmergencyPatients",
+
       emergencyCount
+
     );
 
   }
@@ -1514,6 +1755,7 @@ function bookSmartAppointment(){
   else{
 
     let normalCount =
+
     localStorage.getItem(
       "smartNormalPatients"
     );
@@ -1527,13 +1769,18 @@ function bookSmartAppointment(){
     normalCount++;
 
     localStorage.setItem(
+
       "smartNormalPatients",
+
       normalCount
+
     );
 
   }
 
-  // OPERATION
+  /* =========================
+     OPERATIONS
+  ========================= */
 
   if(
 
@@ -1546,6 +1793,7 @@ function bookSmartAppointment(){
   ){
 
     let operations =
+
     localStorage.getItem(
       "smartOperations"
     );
@@ -1559,19 +1807,27 @@ function bookSmartAppointment(){
     operations++;
 
     localStorage.setItem(
+
       "smartOperations",
+
       operations
+
     );
 
   }
 
-  // UPDATE DASHBOARD
+  /* =========================
+     UPDATE DASHBOARD
+  ========================= */
 
   loadHospitalAnalytics();
 
-  // AI VOICE
+  /* =========================
+     AI VOICE
+  ========================= */
 
   const speech =
+
   new SpeechSynthesisUtterance(
 
     name +
@@ -1584,9 +1840,37 @@ function bookSmartAppointment(){
 
   speech.rate = 0.9;
 
-  speechSynthesis.speak(speech);
+  speechSynthesis.speak(
+    speech
+  );
+
+  /* =========================
+     CLEAR INPUTS
+  ========================= */
+
+  document.getElementById(
+    "smartPatientName"
+  ).value = "";
+
+  document.getElementById(
+    "smartPatientAge"
+  ).value = "";
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* =========================
    LOAD ANALYTICS
@@ -1661,4 +1945,584 @@ function getSuggestion() {
   }
 
   document.getElementById("aiSuggestion").innerText = output;
+}
+/* =========================
+   SMART LIVE SCREEN
+========================= */
+
+let patientQueue = [];
+
+/* =========================
+   UPDATE LIVE SCREEN
+========================= */
+
+function updateLivePatient(patient){
+
+  patientQueue.push(patient);
+
+  const current =
+  patientQueue[0];
+
+  let treatment = "";
+  let room = "";
+
+  const seriousDiseases = [
+
+    "heart attack",
+    "bone fracture",
+    "accident injury",
+    "breathing problem"
+
+  ];
+
+  if(
+
+    seriousDiseases.includes(
+
+      current.disease.toLowerCase()
+
+    )
+
+  ){
+
+    treatment =
+    "🔴 Operation Running";
+
+    room =
+    "🏥 OT Room 02";
+
+  }
+
+  else{
+
+    treatment =
+    "🟢 Normal Treatment";
+
+    room =
+    "💊 OPD Room 05";
+
+  }
+
+  // CURRENT
+
+  document.getElementById(
+    "livePatientName"
+  ).innerHTML =
+  "👤 " + current.name;
+
+  document.getElementById(
+    "liveDisease"
+  ).innerHTML =
+  "🦠 " + current.disease;
+
+  document.getElementById(
+    "liveDoctor"
+  ).innerHTML =
+  "👨‍⚕ " + current.doctor;
+
+  document.getElementById(
+    "liveRoom"
+  ).innerHTML =
+  room;
+
+  document.getElementById(
+    "liveTreatment"
+  ).innerHTML =
+  treatment;
+
+  // NEXT
+
+  if(patientQueue.length > 1){
+
+    const next =
+    patientQueue[1];
+
+    document.getElementById(
+      "nextPatientName"
+    ).innerHTML =
+    next.name;
+
+    document.getElementById(
+      "nextDisease"
+    ).innerHTML =
+    "🦠 " + next.disease;
+
+  }
+
+}
+
+/* =========================
+   AI ANNOUNCEMENT
+========================= */
+
+function hospitalAnnouncement(){
+
+  if(patientQueue.length === 0){
+
+    alert("No Patient");
+    return;
+
+  }
+
+  const current =
+  patientQueue[0];
+
+  const speech =
+  new SpeechSynthesisUtterance(
+
+    current.name +
+
+    " ji ka treatment " +
+
+    current.doctor +
+
+    " doctor ke under chal raha hai"
+
+  );
+
+  speech.lang = "hi-IN";
+
+  speech.rate = 0.9;
+
+  speechSynthesis.cancel();
+
+  speechSynthesis.speak(speech);
+
+}
+
+
+// ===================================
+// FUTURE AI LIVE AUTO DATA
+// ===================================
+
+setInterval(() => {
+
+const liveCards =
+document.querySelectorAll(
+".future-operation-card"
+);
+
+liveCards.forEach(card => {
+
+card.style.boxShadow =
+`0 0 ${
+Math.random()*40
+}px cyan`;
+
+});
+
+},2000);
+
+
+
+/* ===================================
+   SMART APPOINTMENT STORAGE SYSTEM
+=================================== */
+
+// let smartHospitalData =
+// JSON.parse(
+// localStorage.getItem(
+// "smartHospitalData"
+// )
+// ) || [];
+
+/* ===================================
+   SAVE SMART APPOINTMENT
+=================================== */
+
+// function saveSmartAppointment(data){
+
+// smartHospitalData.push(data);
+
+// localStorage.setItem(
+
+// "smartHospitalData",
+
+// JSON.stringify(
+// smartHospitalData
+// )
+
+// );
+
+// showAllSmartAppointments();
+
+// updateSmartAnalytics();
+
+// }
+
+/* ===================================
+   SHOW ALL SMART APPOINTMENTS
+=================================== */
+
+function showAllSmartAppointments(){
+
+let listBox =
+document.getElementById(
+"smartAppointmentList"
+);
+
+if(!listBox) return;
+
+if(
+smartHospitalData.length === 0
+){
+
+listBox.innerHTML = `
+
+<h3
+style="
+text-align:center;
+opacity:0.7;
+">
+
+No Appointments Yet...
+
+</h3>
+
+`;
+
+return;
+
+}
+
+listBox.innerHTML = "";
+
+smartHospitalData
+.slice()
+.reverse()
+.forEach((patient,index)=>{
+
+listBox.innerHTML += `
+
+<div class="
+smart-history-card
+${patient.type === "Emergency"
+? "history-emergency"
+: ""}">
+
+<h3>
+🎟 ${patient.token}
+</h3>
+
+<p>
+👤 Name :
+${patient.name}
+</p>
+
+<p>
+🦠 Disease :
+${patient.disease}
+</p>
+
+<p>
+🚨 Type :
+${patient.type}
+</p>
+
+<p>
+👨‍⚕ Doctor :
+${patient.doctor}
+</p>
+
+<p>
+🕒 ${patient.time}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* ===================================
+   UPDATE LIVE ANALYTICS
+=================================== */
+
+function updateSmartAnalytics(){
+
+let total =
+smartHospitalData.length;
+
+let emergency =
+smartHospitalData.filter(
+p => p.type === "Emergency"
+).length;
+
+let normal =
+total - emergency;
+
+let totalBox =
+document.getElementById(
+"totalSmartAppointments"
+);
+
+let emergencyBox =
+document.getElementById(
+"totalEmergencyPatients"
+);
+
+let normalBox =
+document.getElementById(
+"totalNormalPatients"
+);
+
+let operationBox =
+document.getElementById(
+"totalOperations"
+);
+
+if(totalBox)
+totalBox.innerText = total;
+
+if(emergencyBox)
+emergencyBox.innerText = emergency;
+
+if(normalBox)
+normalBox.innerText = normal;
+
+if(operationBox)
+operationBox.innerText =
+Math.floor(total * 0.4);
+
+}
+
+/* ===================================
+   AUTO LOAD DATA
+=================================== */
+
+showAllSmartAppointments();
+
+updateSmartAnalytics();
+
+/* =========================
+   SMART HOSPITAL STORAGE
+========================= */
+
+let smartHospitalAppointments =
+
+JSON.parse(
+
+localStorage.getItem(
+"smartHospitalAppointments"
+)
+
+) || [];
+
+/* =========================
+   OPEN RECORD PAGE
+========================= */
+
+function openSmartRecords(){
+
+show("smartRecordPage");
+
+showSmartRecords();
+
+}
+
+/* =========================
+   SHOW ALL RECORDS
+========================= */
+
+function showSmartRecords(){
+
+let list =
+document.getElementById(
+"smartRecordList"
+);
+
+if(!list) return;
+
+if(
+smartHospitalAppointments.length === 0
+){
+
+list.innerHTML = `
+
+<h2
+style="
+text-align:center;
+opacity:0.7;
+">
+
+No Appointment Found
+
+</h2>
+
+`;
+
+return;
+
+}
+
+list.innerHTML = "";
+
+smartHospitalAppointments
+.slice()
+.reverse()
+.forEach(patient => {
+
+list.innerHTML += `
+
+<div class="
+smart-record-card
+${patient.type === "Emergency"
+? "smart-emergency"
+: ""}
+">
+
+<h2>
+🎟 ${patient.token}
+</h2>
+
+<p>
+👤 Name :
+${patient.name}
+</p>
+
+<p>
+🦠 Disease :
+${patient.disease}
+</p>
+
+<p>
+🚨 Type :
+${patient.type}
+</p>
+
+<p>
+👨‍⚕ Doctor :
+${patient.doctor}
+</p>
+
+<p>
+🕒 ${patient.time}
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* =========================
+   OPEN SMART RECORD PAGE
+========================= */
+
+function openSmartRecords(){
+
+  show("smartRecordPage");
+
+  showSmartRecords();
+
+}
+
+/* =========================
+   SHOW SMART RECORDS
+========================= */
+
+function showSmartRecords(){
+
+  let list =
+
+  document.getElementById(
+    "smartRecordList"
+  );
+
+  if(!list) return;
+
+  /* GET DATA */
+
+  let appointments =
+
+  JSON.parse(
+
+    localStorage.getItem(
+      "smartHospitalAppointments"
+    )
+
+  ) || [];
+
+  /* EMPTY */
+
+  if(appointments.length === 0){
+
+    list.innerHTML = `
+
+    <h2
+    style="
+    text-align:center;
+    color:white;
+    ">
+
+    No Appointments Found
+
+    </h2>
+
+    `;
+
+    return;
+
+  }
+
+  /* CLEAR */
+
+  list.innerHTML = "";
+
+  /* SHOW DATA */
+
+  appointments
+  .slice()
+  .reverse()
+  .forEach(patient => {
+
+    list.innerHTML += `
+
+    <div class="
+    smart-record-card
+
+    ${patient.type === "Emergency"
+    ? "smart-emergency"
+    : ""}
+
+    ">
+
+      <h2>
+      🎟 ${patient.token}
+      </h2>
+
+      <p>
+      👤 Name :
+      ${patient.name}
+      </p>
+
+      <p>
+      🦠 Disease :
+      ${patient.disease}
+      </p>
+
+      <p>
+      🚨 Type :
+      ${patient.type}
+      </p>
+
+      <p>
+      👨‍⚕ Doctor :
+      ${patient.doctor}
+      </p>
+
+      <p>
+      🕒 ${patient.time}
+      </p>
+
+    </div>
+
+    `;
+
+  });
+
 }
